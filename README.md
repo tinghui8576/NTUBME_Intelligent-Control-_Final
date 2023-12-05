@@ -15,6 +15,7 @@ Data distribution <br>
 #### Models
 本研究利用 InceptionV3 卷積神經網路架構以及自己建構之卷積模型以辨識葉片影像中的病害。卷積神經網路的優化器使用 Adam，初始學習率為 0.0001，批次大小為 128，損失 率則使用交叉熵損失函數(Category cross entropy)計算。 <br>
 InceptionV3 架構如下圖，由於此模型預設 Input 大小為 229x229，因此在前端接一大小 為 256x256 的輸入層，接做批次標準化與 Dropout 再接至一大小為 1024 的隱藏層，其激勵函 數使用 Relu，再做一次 Dropout 並與最終的 Output Layer 做連結，其激勵函數使用 Softmax。 <br>
+
 [InceptionV3](蘋果葉片辨識＿Inception.ipynb) <br>
 Model structure <br>
 ![image](/figure/incept_model.jpeg) <br>
@@ -24,8 +25,10 @@ Hyperparameters <br>
 | Optimizer	| Adam |
 | initial learning rate | 0.0001 |
 | epochs	| 6 |
-| batch_size	| 128 | <br>
-自建的模型則使用作業五的作為參考，共使用三層卷積層與池化層，卷積核大小皆為 3x3，而 Filter 分 別為 32、64 與 128，激勵函數皆使用 Relu，接著連接 至平坦層，再接至一層大小為 1024 的隱藏層，其激勵 函數使用 Relu，最終連結至 Output Layer，其激勵函數 亦為 Softmax。 <br>
+| batch_size	| 128 | 
+<br>
+自建的模型則使用作業五的作為參考，共使用三層卷積層與池化層，卷積核大小皆為 3x3，而 Filter 分 別為 32、64 與 128，激勵函數皆使用 Relu，接著連接 至平坦層，再接至一層大小為 1024 的隱藏層，其激勵 函數使用 Relu，最終連結至 Output Layer，其激勵函數 亦為 Softmax。<br>
+
 [Self-Built Model](蘋果葉片辨識＿self.ipynb) <br>
 Model structure <br>
 ![image](/figure/self_model.png) <br>
@@ -35,7 +38,7 @@ Hyperparameters <br>
 | Optimizer	| Adam |
 | initial learning rate | 0.0001 |
 | epochs	| 20 |
-| batch_size	| 128 | <br>
+| batch_size	| 128 |
 ### Results
 在本專題建立訓練之葉片病害辨識模型中，InceptionV3 的訓練準確率達 95.6%，驗證準 確率達 91.5%，測試準確率則為 71.9%，總訓練時長為 8376 秒。而自建卷積神經網路模型的 訓練準確率達 68.6%，驗證準確率達 67.2%，測試準確率則為 67.7%，總訓練時長為 14282 秒。<br>
 預測結果中，InceptionV3 的準確度較自建模型的準確度高，推測是卷積層數差異，也許可以增加自建模型準確度，但並未做不同層數之比較，略為可惜。 <br>
